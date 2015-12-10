@@ -43,6 +43,10 @@ html, body{
     0% { background-position: 0px 100%; }
     100% { background-position: -275px 100%; }
 }
+@-ms-keyframes animSky{
+    0% { background-position: 0px 100%; }
+    100% { background-position: -275px 100%; }
+}
 @-o-keyframes animSky{
     0% { background-position: 0px 100%; }
     100% { background-position: -275px 100%; }
@@ -63,6 +67,7 @@ html, body{
     background-color: #4ec0ca;      
     -webkit-animation: animSky 7s linear infinite;
        -moz-animation: animSky 7s linear infinite;
+        -ms-animation: animSky 7s linear infinite;
          -o-animation: animSky 7s linear infinite;
             animation: animSky 7s linear infinite;
 }
@@ -79,6 +84,10 @@ html, body{
     100% { background-position: -63px 0px; }
 }
 @-moz-keyframes animCeiling{
+    0% { background-position: 0px 0px; }
+    100% { background-position: -63px 0px; }
+}
+@-ms-keyframes animCeiling{
     0% { background-position: 0px 0px; }
     100% { background-position: -63px 0px; }
 }
@@ -100,6 +109,7 @@ html, body{
     background-repeat: repeat-x;      
     -webkit-animation: animCeiling 481ms linear infinite;
        -moz-animation: animCeiling 481ms linear infinite;
+        -ms-animation: animCeiling 481ms linear infinite;
          -o-animation: animCeiling 481ms linear infinite;
             animation: animCeiling 481ms linear infinite;
 }
@@ -109,6 +119,10 @@ html, body{
     100% { background-position: -335px 0px; }
 }
 @-moz-keyframes animLand{
+    0% { background-position: 0px 0px; }
+    100% { background-position: -335px 0px; }
+}
+@-ms-keyframes animLand{
     0% { background-position: 0px 0px; }
     100% { background-position: -335px 0px; }
 }
@@ -132,6 +146,7 @@ html, body{
     background-color: #ded895;      
     -webkit-animation: animLand 2516ms linear infinite;
        -moz-animation: animLand 2516ms linear infinite;
+        -ms-animation: animLand 2516ms linear infinite;
          -o-animation: animLand 2516ms linear infinite;
             animation: animLand 2516ms linear infinite;
 }
@@ -242,6 +257,10 @@ html, body{
     from { background-position: 0px 0px; }
     to { background-position: 0px -96px; }
 }
+@-ms-keyframes animPersonage{
+    from { background-position: 0px 0px; }
+    to { background-position: 0px -96px; }
+}
 @-o-keyframes animPersonage{
     from { background-position: 0px 0px; }
     to { background-position: 0px -96px; }
@@ -258,6 +277,7 @@ html, body{
     background-image: url('../assets/scenery/bird.png');   
     -webkit-animation: animPersonage 300ms steps(4) infinite;
        -moz-animation: animPersonage 300ms steps(4) infinite;
+        -ms-animation: animPersonage 300ms steps(4) infinite;
          -o-animation: animPersonage 300ms steps(4) infinite;
             animation: animPersonage 300ms steps(4) infinite;
 }
@@ -267,6 +287,10 @@ html, body{
     100% { left: -100px; }
 }
 @-moz-keyframes animObstacle{
+    0% { left: 900px; }
+    100% { left: -100px; }
+}
+@-ms-keyframes animObstacle{
     0% { left: 900px; }
     100% { left: -100px; }
 }
@@ -288,6 +312,7 @@ html, body{
     z-index: 10;   
     -webkit-animation: animObstacle 7500ms linear;
        -moz-animation: animObstacle 7500ms linear;
+        -ms-animation: animObstacle 7500ms linear;
          -o-animation: animObstacle 7500ms linear;
             animation: animObstacle 7500ms linear;
 }
