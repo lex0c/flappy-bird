@@ -1,0 +1,329 @@
+html, body{
+    height: 100%;
+    overflow: hidden;
+    font-family: monospace;
+    font-size: 12px;
+    color: #fff;
+}
+
+#background-pag{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: url("../assets/background_pag.jpg");
+}
+
+#modal{
+    position: relative;
+    display: block;
+    width: 767px;
+    min-width: 767px;
+    height: 543px;
+    min-height: 543px;
+    top: 30px;
+    margin: auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 5px 5px 50px #000;
+}
+
+#game-area{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+@-webkit-keyframes animSky{
+    0% { background-position: 0px 100%; }
+    100% { background-position: -275px 100%; }
+}
+@-moz-keyframes animSky{
+    0% { background-position: 0px 100%; }
+    100% { background-position: -275px 100%; }
+}
+@-o-keyframes animSky{
+    0% { background-position: 0px 100%; }
+    100% { background-position: -275px 100%; }
+}
+@keyframes animSky{
+    0% { background-position: 0px 100%; }
+    100% { background-position: -275px 100%; }
+}
+
+#background-game{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 80%;
+    background-image: url("../assets/scenery/sky.png");
+    background-repeat: repeat-x;
+    background-position: 0px 100%;
+    background-color: #4ec0ca;      
+    -webkit-animation: animSky 7s linear infinite;
+       -moz-animation: animSky 7s linear infinite;
+         -o-animation: animSky 7s linear infinite;
+            animation: animSky 7s linear infinite;
+}
+
+#flight-area{
+    position: absolute;
+    bottom: 0;
+    height: 420px;
+    width: 100%;
+}
+
+@-webkit-keyframes animCeiling{
+    0% { background-position: 0px 0px; }
+    100% { background-position: -63px 0px; }
+}
+@-moz-keyframes animCeiling{
+    0% { background-position: 0px 0px; }
+    100% { background-position: -63px 0px; }
+}
+@-o-keyframes animCeiling{
+    0% { background-position: 0px 0px; }
+    100% { background-position: -63px 0px; }
+}
+@keyframes animCeiling{
+    0% { background-position: 0px 0px; }
+    100% { background-position: -63px 0px; }
+}
+
+#ceiling{
+    position: absolute;
+    top: -16px;
+    height: 16px;
+    width: 100%;
+    background-image: url("../assets/scenery/ceiling.png");
+    background-repeat: repeat-x;      
+    -webkit-animation: animCeiling 481ms linear infinite;
+       -moz-animation: animCeiling 481ms linear infinite;
+         -o-animation: animCeiling 481ms linear infinite;
+            animation: animCeiling 481ms linear infinite;
+}
+
+@-webkit-keyframes animLand{
+    0% { background-position: 0px 0px; }
+    100% { background-position: -335px 0px; }
+}
+@-moz-keyframes animLand{
+    0% { background-position: 0px 0px; }
+    100% { background-position: -335px 0px; }
+}
+@-o-keyframes animLand{
+    0% { background-position: 0px 0px; }
+    100% { background-position: -335px 0px; }
+}
+@keyframes animLand{
+    0% { background-position: 0px 0px; }
+    100% { background-position: -335px 0px; }
+}
+
+#land{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 20%;
+    background-image: url("../assets/scenery/land.png");
+    background-repeat: repeat-x;
+    background-position: 0px 0px;
+    background-color: #ded895;      
+    -webkit-animation: animLand 2516ms linear infinite;
+       -moz-animation: animLand 2516ms linear infinite;
+         -o-animation: animLand 2516ms linear infinite;
+            animation: animLand 2516ms linear infinite;
+}
+
+#score{
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    z-index: 100;
+}
+
+    #score img{
+        display: inline-block;
+        padding: 1px;
+    }
+
+#splash-screen{
+    position: absolute;
+    opacity: 0;
+    top: 75px;
+    left: 65px;
+    width: 188px;
+    height: 170px;
+    background-image: url('../assets/scenery/splash_screen.png');
+    background-repeat: no-repeat;
+}
+
+#scoreboard{
+    position: absolute;
+    display: none;
+    opacity: 0;
+    top: 64px;
+    left: 240px;
+    width: 236px;
+    height: 280px;
+    background-image: url('../assets/scenery/score_board.png');
+    background-repeat: no-repeat;   
+    z-index: 1000;
+}
+
+    #medal{
+        position: absolute;
+        opacity: 0;
+        top: 114px;
+        left: 32px;
+        width: 44px;
+        height: 44px;
+    }
+
+    #current-score{
+        position: absolute;
+        top: 105px;
+        left: 107px;
+        width: 104px;
+        height: 14px;
+        text-align: right;
+    }
+
+        #current-score img{
+            padding-left: 2px;
+        }
+
+    #best-score{
+        position: absolute;
+        top: 147px;
+        left: 107px;
+        width: 104px;
+        height: 14px;
+        text-align: right;
+    }
+
+        #best-score img{
+            padding-left: 2px;
+        }
+
+    #restart{
+        position: absolute;
+        opacity: 0;
+        top: 205px;
+        left: 61px;
+        height: 115px;
+        width: 70px;
+        cursor: pointer;
+    }
+
+/* Hack to compute the edges of sprites */
+.boundingbox{
+    position: absolute;
+    display: none;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border: 1px solid red;
+}
+
+/* Initial position of bird */
+#player{
+	top: 200px;
+    left: 60px;
+}
+
+@-webkit-keyframes animPersonage{
+    from { background-position: 0px 0px; }
+    to { background-position: 0px -96px; }
+}
+@-moz-keyframes animPersonage{
+    from { background-position: 0px 0px; }
+    to { background-position: 0px -96px; }
+}
+@-o-keyframes animPersonage{
+    from { background-position: 0px 0px; }
+    to { background-position: 0px -96px; }
+}
+@keyframes animPersonage{
+    from { background-position: 0px 0px; }
+    to { background-position: 0px -96px; }
+}
+
+.personage{
+    position: absolute;
+    width: 34px;
+    height: 24px;
+    background-image: url('../assets/scenery/bird.png');   
+    -webkit-animation: animPersonage 300ms steps(4) infinite;
+       -moz-animation: animPersonage 300ms steps(4) infinite;
+         -o-animation: animPersonage 300ms steps(4) infinite;
+            animation: animPersonage 300ms steps(4) infinite;
+}
+
+@-webkit-keyframes animObstacle{
+    0% { left: 900px; }
+    100% { left: -100px; }
+}
+@-moz-keyframes animObstacle{
+    0% { left: 900px; }
+    100% { left: -100px; }
+}
+@-o-keyframes animObstacle{
+    0% { left: 900px; }
+    100% { left: -100px; }
+}
+@keyframes animObstacle{
+    0% { left: 900px; }
+    100% { left: -100px; }
+}
+
+/* Position and animation */
+.obstacle{
+    position: absolute;
+    left: -100px;
+    width: 52px;
+    height: 100%;
+    z-index: 10;   
+    -webkit-animation: animObstacle 7500ms linear;
+       -moz-animation: animObstacle 7500ms linear;
+         -o-animation: animObstacle 7500ms linear;
+            animation: animObstacle 7500ms linear;
+}
+
+.obstacle_upper{
+    position: absolute;
+    top: 0;
+    width: 52px;
+    background-image: url('../assets/scenery/pipe.png');
+    background-repeat: repeat-y;
+    background-position: center;
+}
+
+    .obstacle_upper:after{
+        content: "";
+        position: absolute;
+        bottom: 0;
+        width: 52px;
+        height: 26px;
+        background-image: url('../assets/scenery/pipe_down.png');
+    }
+
+.obstacle_lower{
+    position: absolute;
+    bottom: 0;
+    width: 52px;
+    background-image: url('../assets/scenery/pipe.png');
+    background-repeat: repeat-y;
+    background-position: center;
+}
+
+    .obstacle_lower:after{
+        content: "";
+        position: absolute;
+        top: 0;
+        width: 52px;
+        height: 26px;
+        background-image: url('../assets/scenery/pipe_up.png');
+    }

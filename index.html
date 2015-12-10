@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>   
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+      <link rel="stylesheet" href="css/reset.css" />
+      <link rel="stylesheet" href="css/style.css" />
+      <title>Flappy Bird 2.0</title>
+   </head>
+<body>
+	<div id="background-pag">
+   		<main id="modal">
+      		<section id="game-area">          
+         		<section id="background-game" class="animated">
+            		<section id="flight-area">
+               			<div id="ceiling" class="animated"></div>
+               			<div id="player" class="personage animated"></div>  
+               			<div id="score"></div>
+               			<div id="splash-screen"></div>
+               			<div id="scoreboard">
+               			   <div id="medal"></div>
+                  			<div id="current-score"></div>
+                  			<div id="best-score"></div>
+                  			<div id="restart"><img src="assets/scenery/restart.png" alt="Restart"></div>
+               			</div>
+               			<!-- The obstacles will appear here by means of an array -->
+            		</section>
+         		</section>            
+         		<footer id="land" class="animated"></footer>
+      		</section>
+   		</main>
+	</div>
+   <!-- APIs and game logic -->
+   <script type="text/javascript" src="js/libs/jquery.min.js"></script>
+   <script type="text/javascript" src="js/libs/jquery.transit.min.js"></script>
+   <script type="text/javascript" src="js/libs/buzz.min.js"></script>
+   <script type="text/javascript" src="js/logic.js"></script>
+</body>
+</html>
