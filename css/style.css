@@ -246,7 +246,7 @@ html, body{
 /* Initial position of bird */
 #player{
 	top: 200px;
-    left: 60px;
+    left: 100px;
 }
 
 @-webkit-keyframes animPersonage{
