@@ -146,8 +146,8 @@ function startGame()
     }
 
     // Loop interval
-    gameLoop = setInterval(inLoop, (1000.0 / 60.0)); // 60fps
-    obstacleLoop = setInterval(addObstacle, 1400);
+    gameLoop = setInterval(inLoop, (900.0 / 60.0)); // 60fps
+    obstacleLoop = setInterval(addObstacle, 1400); // Sets the distance between obstacles
 
     // Start
     playerJump();
@@ -187,11 +187,11 @@ function inLoop()
         return;
     }
     // Checks if the player collided with the ceiling
-    if(boxTop <= ($("#ceiling").offset().top + $("#ceiling").height())){ 
-        position = 0; 
+    else if(boxTop <= ($("#ceiling").offset().top + $("#ceiling").height())){ 
+        position = 0;
     }
     // Checks if there is no obstacle in game
-    if(obstacle[0] == null){ 
+    else if(obstacle[0] == null){ 
         return; 
     }
 
@@ -242,7 +242,7 @@ $(document).keydown(function(e)
 if("ontouchstart" in window){
     $(document).on("touchstart", stateGame);
 }else{
-    $(document).on("mousedown", stateGame);
+    $("#modal").on("mousedown", stateGame);
 }
 
 // Initializes the game based on the current state
@@ -258,7 +258,7 @@ function stateGame()
 // Relates the sound with the leap
 function playerJump()
 {
-   velocity = jump;
+   velocity = -4.5;
    soundJump.stop();
    soundJump.play();
 }
@@ -299,7 +299,7 @@ function setBestScore()
     var elementScore = $("#best-score");
     elementScore.empty();
 
-    var num = score.toString().split('');
+    var num = bestScore.toString().split('');
     for(var i = 0; i < num.length; i++){
         elementScore.append("<img src='assets/fonts/small_" + num[i] + ".png' alt='" + num[i] + "'>");
     }
@@ -380,12 +380,12 @@ function showScore()
     // Transitions
     $("#scoreboard").css({ y: '40px', opacity: 0 });
     $("#restart").css({ y: '40px', opacity: 0 });
-    $("#scoreboard").transition({ y: '0px', opacity: 1}, 600, 'ease', function(){
+    $("#scoreboard").transition({ y: '0px', opacity: 1}, 500, 'ease', function(){
       
         soundSwoosh.stop();
         soundSwoosh.play();
          
-        $("#restart").transition({ y: '0px', opacity: 1}, 600, 'ease');
+        $("#restart").transition({ y: '0px', opacity: 1}, 500, 'ease');
          
         if(setMedal()){
             $("#medal").css({ scale: 2, opacity: 0 });
@@ -458,7 +458,7 @@ var isIncompatible = {
     Safari: function() 
     { 
     	return (navigator.userAgent.match(/OS X.*Safari/) 
-            && ! navigator.userAgent.match(/Chrome/)); 
+            && !navigator.userAgent.match(/Chrome/)); 
     },
     Windows: function() 
     { 
