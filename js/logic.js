@@ -18,14 +18,18 @@ var position = 180;
 var rotation = 0;
 var jump = -4.6;
 
-// Current score and best
-var score = 0;
-var bestScore = 0;
-
 // Pre-defined measures for pipes
 var obstacle = new Array();
 var obstacleWidth = 52;
 var obstacleHeight = 90;
+
+// Current score and best
+var score = 0;
+var bestScore = 0;
+
+// Loops of iteration
+var gameLoop;
+var obstacleLoop;
 
 // Reload game
 var restart = false;
@@ -37,13 +41,7 @@ var soundHit = new buzz.sound("assets/sounds/hit.ogg");
 var soundDie = new buzz.sound("assets/sounds/die.ogg");
 var soundSwoosh = new buzz.sound("assets/sounds/swooshing.ogg");
 buzz.all().setVolume(30);
-
-// Loops of iteration
-var gameLoop;
-var obstacleLoop;
-
 /// End of variables declaration ///
-
 
 /* 
     /// BUILDER ///
@@ -67,63 +65,33 @@ $(document).ready(function()
 
 });
 
-/*
-    /// STORES THE PLAYER'S SCORE ///
-*/
-function getCookie(scoreType)
-{
-    var name = scoreType + "=";
-    var cookieSplit = document.cookie.split(';');
-    for(var i = 0; i < cookieSplit.length; i++){
-        var cookie = cookieSplit[i].trim();
-        if(cookie.indexOf(name) == 0){
-            return cookie.substring(name.length,cookie.length);
+$(document).keydown(function(e)
+{    
+    if(e.keyCode == 32){
+        // Begins with the spacebar
+        if(currentState == states.gameEnd){
+            $("#restart").click();
+        }else{
+            stateGame();
         }
     }
-    return "";
+});
+
+// Begins with the touch or mouse
+if("ontouchstart" in window){
+    $(document).on("touchstart", stateGame);
+}else{
+    $("#modal").on("mousedown", stateGame);
 }
 
-function setCookie(name, value, exdays)
+// Initializes the game based on the current state
+function stateGame()
 {
-    var d = new Date();
-    d.setTime(d.getTime()+(exdays*24*60*60*1000));
-    var expires = "expires="+d.toGMTString();
-    document.cookie = name + "=" + value + "; " + expires;
-}
-
-/*
-    /// SPLASH SCREEN ///
-*/
-function showSplashScreen()
-{
-	currentState = states.splashScreen;
-	  
-    // Initial values
-    velocity = 0;
-    position = 180;
-    rotation = 0;
-    score = 0;
-
-    // Reset the position of player
-    updatePlayer($("#player").css({ y: 0, x: 0 }));
-
-    // Sound of actions
-    soundSwoosh.stop();
-    soundSwoosh.play();
-  
-    // Clear the obstacles of screen
-    $(".obstacle").remove();
-    obstacle = new Array();
-
-    // Reload animation of sprites
-    $(".animated").css('-webkit-animation-play-state', 'running');
-    $(".animated").css('-moz-animation-play-state', 'running');
-    $(".animated").css('-o-animation-play-state', 'running');
-    $(".animated").css('animation-play-state', 'running');
-
-    // Show 
-    $("#splash-screen").transition({ opacity: 1 }, 2000, 'ease');
-
+    if(currentState == states.duringGame){ 
+        playerJump();
+    }else if(currentState == states.splashScreen){ 
+        startGame(); 
+    }
 }
 
 /*
@@ -151,12 +119,6 @@ function startGame()
 
     // Start
     playerJump();
-}
-
-function updatePlayer(player)
-{
-    rotation = Math.min((velocity / 10) * 90, 90);   
-    $(player).css({ rotate: rotation, top: position });
 }
 
 function inLoop()
@@ -226,101 +188,12 @@ function inLoop()
 
 }
 
-$(document).keydown(function(e)
-{    
-    if(e.keyCode == 32){
-        // Begins with the spacebar
-        if(currentState == states.gameEnd){
-            $("#restart").click();
-        }else{
-            stateGame();
-        }
-    }
-});
-
-// Begins with the touch or mouse
-if("ontouchstart" in window){
-    $(document).on("touchstart", stateGame);
-}else{
-    $("#modal").on("mousedown", stateGame);
-}
-
-// Initializes the game based on the current state
-function stateGame()
-{
-    if(currentState == states.duringGame){ 
-        playerJump();
-    }else if(currentState == states.splashScreen){ 
-        startGame(); 
-    }
-}
-
 // Relates the sound with the leap
 function playerJump()
 {
    velocity = -4.5;
    soundJump.stop();
    soundJump.play();
-}
-
-// Updates the score of the player during the game
-function setScoreInGame(erase)
-{
-    var elementScore = $("#score");
-    elementScore.empty();
-      
-    if(erase){ 
-        return; 
-    }
-
-    var num = score.toString().split('');
-    for(var i = 0; i < num.length; i++){
-        elementScore.append("<img src='assets/fonts/big_" + num[i] + ".png' alt='" + num[i] + "'>");
-    }
-
-}
-
-// Displays the current score on the scoreboard
-function setCurrentScore()
-{
-    var elementScore = $("#current-score");
-    elementScore.empty();
-
-    var num = score.toString().split('');
-    for(var i = 0; i < num.length; i++){
-        elementScore.append("<img src='assets/fonts/small_" + num[i] + ".png' alt='" + num[i] + "'>");
-    }
-
-}
-
-// Displays the best score on the scoreboard
-function setBestScore()
-{
-    var elementScore = $("#best-score");
-    elementScore.empty();
-
-    var num = bestScore.toString().split('');
-    for(var i = 0; i < num.length; i++){
-        elementScore.append("<img src='assets/fonts/small_" + num[i] + ".png' alt='" + num[i] + "'>");
-    }
-
-}
-
-// Displays the medal on the scoreboard
-function setMedal()
-{
-    var elementMedal = $("#medal");
-    elementMedal.empty();
-      
-    if(score < 10){ return false; }
-
-    if(score >= 10){ var medal = "bronze"; }
-    if(score >= 20){ var medal = "silver"; }
-    if(score >= 30){ var medal = "gold"; }
-    if(score >= 40){ var medal = "platinum"; }
-      
-    elementMedal.append('<img src="assets/scenery/medal_' + medal +'.png" alt="' + medal +'">');  
-    return true;
 }
 
 function playerDead()
@@ -414,6 +287,47 @@ $("#restart").click(function()
 
 });
 
+/*
+    /// SPLASH SCREEN ///
+*/
+function showSplashScreen()
+{
+    currentState = states.splashScreen;
+      
+    // Initial values
+    velocity = 0;
+    position = 180;
+    rotation = 0;
+    score = 0;
+
+    // Reset the position of player
+    updatePlayer($("#player").css({ y: 0, x: 0 }));
+
+    // Sound of actions
+    soundSwoosh.stop();
+    soundSwoosh.play();
+  
+    // Clear the obstacles of screen
+    $(".obstacle").remove();
+    obstacle = new Array();
+
+    // Reload animation of sprites
+    $(".animated").css('-webkit-animation-play-state', 'running');
+    $(".animated").css('-moz-animation-play-state', 'running');
+    $(".animated").css('-o-animation-play-state', 'running');
+    $(".animated").css('animation-play-state', 'running');
+
+    // Show 
+    $("#splash-screen").transition({ opacity: 1 }, 2000, 'ease');
+
+}
+
+function updatePlayer(player)
+{
+    rotation = Math.min((velocity / 10) * 90, 90);   
+    $(player).css({ rotate: rotation, top: position });
+}
+
 function updateScore()
 {
     score += 1;
@@ -436,6 +350,90 @@ function addObstacle()
     $("#flight-area").append(newObstacle);
     obstacle.push(newObstacle);
 
+}
+
+// Updates the score of the player during the game
+function setScoreInGame(erase)
+{
+    var elementScore = $("#score");
+    elementScore.empty();
+      
+    if(erase){ 
+        return; 
+    }
+
+    var num = score.toString().split('');
+    for(var i = 0; i < num.length; i++){
+        elementScore.append("<img src='assets/fonts/big_" + num[i] + ".png' alt='" + num[i] + "'>");
+    }
+
+}
+
+// Displays the current score on the scoreboard
+function setCurrentScore()
+{
+    var elementScore = $("#current-score");
+    elementScore.empty();
+
+    var num = score.toString().split('');
+    for(var i = 0; i < num.length; i++){
+        elementScore.append("<img src='assets/fonts/small_" + num[i] + ".png' alt='" + num[i] + "'>");
+    }
+
+}
+
+// Displays the best score on the scoreboard
+function setBestScore()
+{
+    var elementScore = $("#best-score");
+    elementScore.empty();
+
+    var num = bestScore.toString().split('');
+    for(var i = 0; i < num.length; i++){
+        elementScore.append("<img src='assets/fonts/small_" + num[i] + ".png' alt='" + num[i] + "'>");
+    }
+
+}
+
+// Displays the medal on the scoreboard
+function setMedal()
+{
+    var elementMedal = $("#medal");
+    elementMedal.empty();
+      
+    if(score < 10){ return false; }
+
+    if(score >= 10){ var medal = "bronze"; }
+    if(score >= 20){ var medal = "silver"; }
+    if(score >= 30){ var medal = "gold"; }
+    if(score >= 40){ var medal = "platinum"; }
+      
+    elementMedal.append('<img src="assets/scenery/medal_' + medal +'.png" alt="' + medal +'">');  
+    return true;
+}
+
+/*
+    /// STORES THE PLAYER'S SCORE ///
+*/
+function getCookie(scoreType)
+{
+    var name = scoreType + "=";
+    var cookieSplit = document.cookie.split(';');
+    for(var i = 0; i < cookieSplit.length; i++){
+        var cookie = cookieSplit[i].trim();
+        if(cookie.indexOf(name) == 0){
+            return cookie.substring(name.length,cookie.length);
+        }
+    }
+    return "";
+}
+
+function setCookie(name, value, exdays)
+{
+    var d = new Date();
+    d.setTime(d.getTime()+(exdays*24*60*60*1000));
+    var expires = "expires="+d.toGMTString();
+    document.cookie = name + "=" + value + "; " + expires;
 }
 
 var isIncompatible = {
