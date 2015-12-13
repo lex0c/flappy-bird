@@ -13,11 +13,8 @@ By Ferreira Studios: https://www.youtube.com/channel/UCztMwfGqsnPeGat7Np-bFKg
 
 Download do jogo disponibilizado pelo curso: https://drive.google.com/file/d/0Bxq332J26934eXd0MkJ5VXpIUTg/view
 
-
-
-Wiki: https://pt.wikipedia.org/wiki/Flappy_Bird
+------------------------------------------------------------------------------------------------------------------
 
 ####Controles:
-Mouse: Click com o botão direito; <br/>
+Mouse: Click com o botão esquerdo; <br/>
 Teclado: Space bar;
-
