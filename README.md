@@ -16,3 +16,8 @@ Download do jogo disponibilizado pelo curso: https://drive.google.com/file/d/0Bx
 
 
 Wiki: https://pt.wikipedia.org/wiki/Flappy_Bird
+
+####Controles:
+Mouse: Click com o botão direito; <br/>
+Teclado: Space bar;
+
