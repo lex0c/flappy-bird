@@ -17,4 +17,6 @@ Download do jogo disponibilizado pelo curso: https://drive.google.com/file/d/0Bx
 
 ####Controles:
 Mouse: Click com o botão esquerdo; <br/>
-Teclado: Space bar;
+Teclado: Space bar; <br/>
+
+---------------------------------------------
