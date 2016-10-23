@@ -1,5 +1,3 @@
-/// Variables declaration ///
-
 // Debug mode of the game
 var debugMode = false;
 
