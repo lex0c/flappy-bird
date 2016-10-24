@@ -2,7 +2,7 @@
 <html>   
    <head>
       <meta charset="utf-8">
-      <meta name="description" content="Game para Web"/>
+      <meta name="description" content="Divirtam-se com esse jogo viciante e desafiador."/>
       <meta name="author" content="Léo B. Castro"/>
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <meta name="robots" content="index, follow"/>
@@ -15,12 +15,12 @@
       <title>Flappy Bird</title>
    </head>
 <body>
-	<div id="background-pag">
+	<div id="background-pag" style="background-image: url('assets/background_pag.jpg');">
    		<main id="modal">
       		<section id="game-area">          
-         		<section id="background-game" class="animated">
+         		<section id="background-game" class="animated" style="background-image: url('assets/scenery/sky.png');">
             		<section id="flight-area">
-               			<div id="ceiling" class="animated"></div>
+               			<div id="ceiling" class="animated" style="background-image: url('assets/scenery/ceiling.png');"></div>
                			<div id="player" class="personage animated"></div>  
                			<div id="score"></div>
                			<div id="splash-screen"></div>
@@ -33,7 +33,7 @@
                			<!-- The obstacles will appear here by means of an array -->
             		</section>
          		</section>            
-         		<footer id="land" class="animated"></footer>
+         		<footer id="land" class="animated" style="background-image: url('assets/scenery/land.png');"></footer>
       		</section>
    		</main>
 	</div>

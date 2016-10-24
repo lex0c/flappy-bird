@@ -12,7 +12,6 @@ html, body{
     bottom: 0;
     left: 0;
     right: 0;
-    background-image: url("../assets/background_pag.jpg");
 }
 
 #modal{
@@ -61,7 +60,6 @@ html, body{
     top: 0;
     width: 100%;
     height: 80%;
-    background-image: url("../assets/scenery/sky.png");
     background-repeat: repeat-x;
     background-position: 0px 100%;
     background-color: #4ec0ca;      
@@ -105,7 +103,6 @@ html, body{
     top: -16px;
     height: 16px;
     width: 100%;
-    background-image: url("../assets/scenery/ceiling.png");
     background-repeat: repeat-x;      
     -webkit-animation: animCeiling 481ms linear infinite;
        -moz-animation: animCeiling 481ms linear infinite;
@@ -140,7 +137,6 @@ html, body{
     bottom: 0;
     width: 100%;
     height: 20%;
-    background-image: url("../assets/scenery/land.png");
     background-repeat: repeat-x;
     background-position: 0px 0px;
     background-color: #ded895;      
